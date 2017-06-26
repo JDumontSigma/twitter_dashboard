@@ -1,6 +1,7 @@
 'use strict';
 //Library imports
  //Import socket io
+import io from 'socket.io-client';
 
 const socket = io.connect('https://sigma-twitter-dashboard.herokuapp.com/');
 
