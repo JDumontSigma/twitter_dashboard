@@ -1,6 +1,5 @@
 'use strict';
 //Library imports
-import io from 'socket.io-client';
  //Import socket io
 
 const socket = io.connect();

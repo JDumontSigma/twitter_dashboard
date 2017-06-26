@@ -2,10 +2,10 @@
 
 const express = require('express'),
       app = express(),
-      https = require('https'),
-      server = https.Server(app),
+      http = require('http'),
+      server = http.Server(app),
       io = require('socket.io')(server),
-      port = process.env.PORT || 8443;
+      port = process.env.PORT || 3000;
 
 const path = require('path'),
       logger = require('morgan'),
