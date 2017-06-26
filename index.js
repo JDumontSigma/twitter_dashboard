@@ -2,9 +2,10 @@
 
 const express = require('express'),
       app = express(),
-      http = require('http'),
-      io = require('socket.io')(app),
-      port = process.env.PORT || 3000;
+      https = require('https'),
+      server = https.Server(app),
+      io = require('socket.io')(server),
+      port = process.env.PORT || 8443;
 
 const path = require('path'),
       logger = require('morgan'),
@@ -31,13 +32,6 @@ app.use(homeRoute);
 
 app.use(errorRoute.notFound);
 app.use(errorRoute.errorHandler);
-
-
-app.listen(port, () => {
-   console.log('Server is up and running');
-});
-
-
 
 let hashTag = '',
     interval = '';
@@ -66,3 +60,6 @@ io.on('connection', (socket) => {
 
 });
 
+server.listen(port, () => {
+   console.log(`Server is up and running ${port}`);
+});
