@@ -5,7 +5,7 @@ const express = require('express'),
       http = require('http'),
       server = http.createServer(app),
       io = require('socket.io')(server),
-      port = process.env.PORT || 3000;
+      port = process.env.PORT || 5000;
 
 const path = require('path'),
       logger = require('morgan'),
