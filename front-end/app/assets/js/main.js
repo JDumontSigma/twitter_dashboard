@@ -2,7 +2,7 @@
 //Library imports
  //Import socket io
 
-const socket = io.connect();
+const socket = io.connect('https://sigma-twitter-dashboard.herokuapp.com/');
 
 //functions which need calling
 const Heart_Beat = require('./seperate/heart_beat'),
