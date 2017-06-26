@@ -3,7 +3,7 @@
  //Import socket io
 import io from 'socket.io-client';
 
-const socket = io.connect('https://sigma-twitter-dashboard.herokuapp.com/');
+const socket = io.connect('https://sigma-twitter-dashboard.herokuapp.com/', { secure: true });
 
 //functions which need calling
 const Heart_Beat = require('./seperate/heart_beat'),
@@ -31,7 +31,6 @@ font_loaded.load()//the font has loaded
 
       check = document.getElementById('chartupdate');
       if( typeof( check ) !== 'undefined' && check != null ){
-            console.log('It exists')
             Update_Chart = require('./seperate/chart.js'); 
       }
 
