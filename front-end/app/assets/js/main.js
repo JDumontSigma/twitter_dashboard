@@ -2,7 +2,7 @@
 //Library imports
  //Import socket io
 
-const socket = io.connect(window.location.hostname);
+const socket = io.connect(`http://${window.location.hostname}`);
 
 //functions which need calling
 const Heart_Beat = require('./seperate/heart_beat'),
