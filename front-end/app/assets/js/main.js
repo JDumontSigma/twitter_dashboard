@@ -2,7 +2,7 @@
 //Library imports
 import io from 'socket.io-client'; //Import socket io
 
-const socket = io.connect();
+const socket = io.connect('/', { secure : true });
 
 //functions which need calling
 const Heart_Beat = require('./seperate/heart_beat'),
