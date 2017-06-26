@@ -36,7 +36,7 @@ app.use(errorRoute.errorHandler);
 let hashTag = '',
     interval = '';
 
-io.on('connection', (socket) => {
+io.sockets.on('connection', (socket) => {
       console.log('Connection');
       
       socket.on( 'stop_stream', () => {
