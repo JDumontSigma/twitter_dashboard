@@ -1,0 +1,48 @@
+body{
+   font-family: 'Montserrat';
+   background-color:$offWhite;
+   padding:1.5rem 0 0 3rem;
+   overflow: hidden;
+   font-size: 1.2rem;
+}
+.skip-links{
+   display: none;
+}
+main{
+   display: flex;
+   align-items: center;
+   justify-content: center stretch;
+   vertical-align: center;
+   height: calc(98vh - 2.5rem);
+   background-image: url('../img/twitter-logo.svg');
+   background-repeat: no-repeat;
+   background-position: right -1rem center;
+   background-size: 30%;
+}
+footer{
+   .footer_branding{
+      float: left;
+      text-align: left;
+      img{
+         width: 15%;
+         max-width: 100px;
+         margin-right: 1rem;
+         float: left;
+         
+      }
+      p{
+         margin: 0;
+         margin-top: 0.15rem;
+         display: inline-block;
+         width: 80%;
+         float: left;
+         font-size: 0.7rem;
+      }
+   }
+   
+}
+
+.data_visualisation{
+   width: 70%;
+   position: relative;
+}

@@ -1,0 +1,68 @@
+.counter{
+   position: absolute;
+   display: inline-block;
+   &_title{
+      font-family: 'Lato';
+      font-size: 2.5rem;
+      width:auto;
+      margin-bottom: 0.25rem;
+      text-transform: none;
+   }
+   &_total{
+      @extend .counter_title;
+      font-size: 7rem;
+   }
+   &_biggest{
+      @extend .counter_title;
+      font-size: 3rem;
+      font-weight: bold;
+      color: $brightBlue;
+   }
+   &_list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: 0.5rem;
+      li{
+         margin-bottom: 0.5rem;
+         font-size:2.3rem;
+         font-family: 'Lato';
+         font-weight: bold;
+         color: $brightBlue;
+      }
+   }
+   span{
+      font-size: 2.5rem;
+      margin-left: 1rem;
+   }
+}
+.highest, .latest{
+   width: 28rem;
+   right: 0rem;
+}
+.highest{
+   top: 31rem;
+}
+.latest{
+   top:10.5rem;
+}
+.tweetCount{
+   top:10.5rem;
+   left: 33rem;
+}
+.reach{
+   top: 27rem;
+   left: 33rem;
+}
+.update{
+   bottom: 0;
+   right: 4rem;
+}
+canvas{
+   position: absolute;
+   top: 9.5rem;
+}
+#chartupdate{
+   bottom: 0;
+   top:calc(100% - 400px);
+}

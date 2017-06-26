@@ -1,0 +1,26 @@
+
+{% extends 'partials/layout.html' %}
+{% block title %}Twitter Dashboard Setup{% endblock %}
+
+
+{% block content %}
+<section class="stop">
+   <h1>The Stream has now ended</h1>
+   <h2>Click the button to download the tweet data as a JSON file</h2>
+   <a href="./download">Click me!</a>
+   <a href="./">Start another stream!</a>
+</section>
+
+   
+
+{% endblock %}
+
+{% block footer %}
+<footer>
+   <section class="footer_branding">
+      <img src="../assets/img/sigma-logo.svg" alt="We Are Sigma">
+      <p>&copy; Copyright &verbar; All Rights Reserved</p>
+      <p>Sigma Consulting &verbar; wearesigma.com</p>
+   </section>
+</footer>
+{% endblock %}

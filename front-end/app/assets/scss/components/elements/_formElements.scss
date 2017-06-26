@@ -1,0 +1,18 @@
+label{
+   font-size: 1.5rem;
+   display: block;
+   clear: left;
+}
+.form_description{
+   width: 60%;
+}
+input[type=text]{
+   font-size: 2rem;
+   padding: 1rem;
+   line-height: 2rem;
+   margin-bottom: 2rem;
+   border: solid 4px $blue;
+}
+.input_wide{
+   width: 50%;
+}

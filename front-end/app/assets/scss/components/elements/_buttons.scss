@@ -1,0 +1,21 @@
+.button{
+   background-color: transparent;
+   border: none;
+   font-size: 2rem;
+   clear: left;
+   display: block;
+   margin-top: 1rem;
+   border: solid 4px $blue;
+   padding: 1rem 2rem;
+   color: $blue;
+   transition: 0.3s;
+   &:hover,&:active,&:focus{
+      cursor: pointer;
+      background-color: $blue;
+      color: $offWhite;
+      transition: 0.3s;
+   }
+   &_submit{
+    @extend .button;  
+   }  
+}

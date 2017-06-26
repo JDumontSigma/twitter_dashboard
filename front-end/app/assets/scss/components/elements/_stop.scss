@@ -1,0 +1,18 @@
+.stop{
+   a{
+      text-decoration: none;
+      color: $offBlack;
+      font-size: 2rem;
+      border: solid 1px $offBlack;
+      padding: 1rem 2rem;
+      margin-top: 2rem;
+      display: inline-block;
+      transition: 0.3s;
+      &:hover{
+         background-color: $offBlack;
+         color: $offWhite;
+         cursor: pointer;
+         transition: 0.3s;
+      }
+   }
+}

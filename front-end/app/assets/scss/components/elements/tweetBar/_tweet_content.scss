@@ -1,0 +1,17 @@
+.tweet_content{
+   margin-top: 2rem;
+   p{
+      font-family: 'Raleway';
+   }  
+   .hashtag{
+      color: $brightBlue;
+      font-family: 'Lato';
+      font-weight: bold;
+   }
+   img{
+      width: 95%;
+      background-color: $offBlack;
+      display: block;
+      margin: 0 auto;
+   }
+}

@@ -1,0 +1,32 @@
+
+{% extends 'partials/layout.html' %}
+{% block title %}Twitter Dashboard Setup{% endblock %}
+
+
+{% block content %}
+   <section class="setup">
+      <h1>Welcome to your twitter visualisation dashboard</h1>
+      <h2>Before we begin running the system it would be helpful to know a few pieces of information</h2>
+      <form action="#" id="setup_form">
+         <label for="hashtag">The #hashtag to watch out for</label>
+         <p class="form_description">This will be the word the system searches for e.g cats. The search is not case sensitive therefore 'cat' will fetch results containing Cats CATS catS etc. PLEASE DO NOT INCLUDE THE #</p>
+         <input type="text" id="hashtag" class="input_wide" placeholder="Front-End">
+         <label for="interval">Regularity of update in minutes</label>
+         <p class="form_description">The system will regular save and update elements of the chart at certain intervals, by default this will be every 10 mins however you may change it to a interval of your choice within.</p>
+         <input type="text" id="interval" class="input_small" placeholder="10" value="10">
+         <button type="submit" class="button_submit">Lets Go!</button>
+      </form>
+   </section>
+   
+
+{% endblock %}
+
+{% block footer %}
+<footer>
+   <section class="footer_branding">
+      <img src="../assets/img/sigma-logo.svg" alt="We Are Sigma">
+      <p>&copy; Copyright &verbar; All Rights Reserved</p>
+      <p>Sigma Consulting &verbar; wearesigma.com</p>
+   </section>
+</footer>
+{% endblock %}

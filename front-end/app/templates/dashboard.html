@@ -1,0 +1,134 @@
+
+{% extends 'partials/layout.html' %}
+{% block title %}Twitter Dashboard Setup{% endblock %}
+
+
+{% block content %}
+<section class="data_visualisation">
+
+
+   <!-- Start of a Title -->
+   <section class="headings">
+      <h1 class="dashboard_title">
+         <img src="../assets/img/sigma-logo-alt.svg" alt="">
+         Camp Digital Health
+      </h1>
+      <h2 class="dashboard_hashtag">#Camp_Digital</h2>
+   </section>
+
+   <!-- End of title -->
+
+
+   <!-- Start of a main container -->
+   <section class="main_content">
+
+      <canvas id="heartbeat" width="500" height="450"></canvas>
+
+      <section class="counter tweetCount">
+         <h3 class="counter_title">Total Tweets</h3>
+         <h3 class="counter_total">0</h3>
+      </section>
+
+      <section class="counter reach">
+         <h3 class="counter_title">Total Reach</h3>
+         <h3 class="counter_total">0</h3>
+      </section>
+
+      <section class="counter latest">
+         <h3 class="counter_title">Last 5 Tweeters</h3>
+         <ul class="counter_list">
+            <li>Awaiting tweet</li>
+            <li>Awaiting tweet</li>
+            <li>Awaiting tweet</li>
+            <li>Awaiting tweet</li>
+            <li>Awaiting tweet</li>
+         </ul>
+      </section>
+
+      <section class="counter highest">
+         <h3 class="counter_title">Biggest Tweeter</h3>
+         <h3 class="counter_biggest">No tweets yet</h3>
+      </section>
+
+      <canvas id="chartupdate" width="1000" height="400"></canvas>
+
+      <section class="counter update">
+         <h3 class="counter_title">Twitter Activity to</h3>
+         <h3 class="counter_total">Loading</h3>
+      </section>
+
+
+      <section class="heart_images">
+         <img src="../assets/img/heart/heart-15.png" id="heart-15" alt="heart beat">
+         <img src="../assets/img/heart/heart-16.png" id="heart-16" alt="heart beat">
+         <img src="../assets/img/heart/heart-17.png" id="heart-17" alt="heart beat">
+         <img src="../assets/img/heart/heart-18.png" id="heart-18" alt="heart beat">
+         <img src="../assets/img/heart/heart-19.png" id="heart-19" alt="heart beat">
+         <img src="../assets/img/heart/heart-20.png" id="heart-20" alt="heart beat">
+         <img src="../assets/img/heart/heart-21.png" id="heart-21" alt="heart beat">
+         <img src="../assets/img/heart/heart-22.png" id="heart-22" alt="heart beat">
+         <img src="../assets/img/heart/heart-23.png" id="heart-23" alt="heart beat">
+         <img src="../assets/img/heart/heart-24.png" id="heart-24" alt="heart beat">
+         <img src="../assets/img/heart/heart-25.png" id="heart-25" alt="heart beat">
+         <img src="../assets/img/heart/heart-26.png" id="heart-26" alt="heart beat">
+         <img src="../assets/img/heart/heart-27.png" id="heart-27" alt="heart beat">
+         <img src="../assets/img/heart/heart-28.png" id="heart-28" alt="heart beat">
+         <img src="../assets/img/heart/heart-29.png" id="heart-29" alt="heart beat">
+         <img src="../assets/img/heart/heart-30.png" id="heart-30" alt="heart beat">
+      </section>
+   </section>
+   <!-- End of main container -->
+
+</section>
+
+
+
+
+<!-- Start of a tweet container -->
+   <section class="tweetBar">
+
+      
+      <!-- Demo HTML for a tweet box
+         <section class="tweet animated bounceInDown">start of a tweet 
+         <section class="tweet_profile">
+            <img src="http://pbs.twimg.com/profile_images/1778302740/CTR_Sports_Twitter_normal.jpg" alt="">
+            <section class="tweet_profile_details">
+               <h4>
+                  <span>@Random_name</span>
+                  <span>Jason Dumont</span>
+               </h4>
+            </section>
+         </section>
+         <section class="tweet_content">
+            <p>RT @godleysports: BI-DISTRICT \n PLAYOFFSCome support the #4 Godley Lady Cats tonight in round one vs. Benbrook. \nGame time is 6:00 @ Granbu…</p>
+            <img src="https://pbs.twimg.com/media/DAmmFt-WAAUYd02.jpg" alt="">
+         </section>
+      </section> 
+      end of a tweet -->
+
+
+   </section>
+
+   <!-- end of a tweet container -->
+
+    <!-- Start of Full Screen container -->
+    <section id="go_fullscreen_container">
+       <section class="info">
+          <h3>Go FullScreen</h3>
+          <p>To make the dashboard an immersive experience without distraction from the browser windows 'Chrome' please enter full screen mode!</p>
+          <a href="" class="button_submit" id="go_fullscreen">Go Fullscreen!</a>
+       </section>
+    </section>
+   <!-- End of full screen Container -->
+
+
+{% endblock %}
+
+{% block footer %}
+<footer>
+   <section class="footer_branding">
+      <img src="../assets/img/sigma-logo.svg" alt="We Are Sigma">
+      <p>&copy; Created by Sigma Consulting Solutions &verbar; wearesigma.com</p>
+   </section>
+</footer>
+{% endblock %}
