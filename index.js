@@ -33,6 +33,13 @@ app.use(homeRoute);
 app.use(errorRoute.notFound);
 app.use(errorRoute.errorHandler);
 
+
+app.listen(port, () => {
+   console.log('Server is up and running');
+});
+
+
+
 let hashTag = '',
     interval = '';
 
@@ -60,6 +67,3 @@ io.on('connection', (socket) => {
 
 });
 
-app.listen(port, () => {
-   console.log('Server is up and running');
-});
