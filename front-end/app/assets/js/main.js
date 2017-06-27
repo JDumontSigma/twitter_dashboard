@@ -47,6 +47,19 @@ if(window.location.href.indexOf("stop") > -1 ) {
          socket.emit( 'stop_stream' );
 }
 
+socket.emit('prime_system', {}, ( data ) => {
+      console.log(data);
+});
+
+socket.on('starting_data', ( data ) => {
+      Hash_Tag.Update_Hastag( data.hashtag );
+      Update_Counter.Update_Counter( data.tweetTotal , 'tweetCount' ); //Updates total tweets
+      Update_Counter.Update_Counter( data.followerTotal, 'reach' ); //updates total reach
+
+      for( let chartPoint in data.chartData ) {
+            Update_Chart.Update_Chart( data.chartData[chartPoint].total , data.chartData[chartPoint].label ); //update the chart
+      }
+});
 /**
  * Updates with every tweet
  */

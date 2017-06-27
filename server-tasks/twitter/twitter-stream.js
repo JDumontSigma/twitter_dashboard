@@ -49,6 +49,9 @@ module.exports = {
          console.log("Stream stopped");
          handle.Final_Store();
          handle.Reset_Storage();
+   },
+   Prime_System: ( io, hashTag ) => {
+         handle.Send_Data( io, hashTag );
    }
 };
 

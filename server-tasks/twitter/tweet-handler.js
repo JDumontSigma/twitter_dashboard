@@ -90,11 +90,11 @@ module.exports = {
             tweetCollection[tweetLimit] = Tweet_Format;//Set the variable
             tweetLimit--;//decrease the count
       };
-      console.log(totalTweets);
+
       io.sockets.emit('new_tweet', { 'tweet': new_tweet, 'tweetCount': totalTweets, 'followerCount': totalFollowers, 'highTweet': highestTweeterName, 'hashtag': hashTag });
    },
    scheduledUpdate: ( io ) => { //update every set period of time
-       console.log('Repeated');
+       console.log('Updating Storage');
         let date = new Date(),
             time = `${ date.getHours() }:${ date.getMinutes() }`;
 
@@ -142,6 +142,15 @@ module.exports = {
    Final_Store: () => {
        console.log('Last tweets stored!')
        store.Tweet_Storage( tweetCollection );//Store the tweet data
+   },
+   Send_Data: ( io, hashtag ) => {
+       io.sockets.emit( 'starting_data', { 
+           'hashtag': hashtag,
+           'tweetTotal': totalTweets,
+           'followerTotal': totalFollowers,
+           'tweetData': tweetCollection,
+           'chartData': chartInfo
+        })
    }
 };
 

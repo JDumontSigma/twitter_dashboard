@@ -10,8 +10,8 @@ export function Update_Chart( number, time ) {
 
 let chart = document.getElementById('chartupdate');
 
-let data = [],
-    labels = [],
+let data = [0],
+    labels = ['start'],
     config = {
      labels: labels,
      datasets: [{

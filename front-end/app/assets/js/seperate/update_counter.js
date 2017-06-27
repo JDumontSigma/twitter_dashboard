@@ -6,5 +6,5 @@ export function Update_Counter( number, counter ) {
 }
 
 export function Update_Name( name, counter ) {
-   $(`.${counter} .counter_biggest`).html( name );//chage the html to the new number
+   $(`.${counter} .counter_biggest`).html( `@${ name }` );//chage the html to the new number
 }

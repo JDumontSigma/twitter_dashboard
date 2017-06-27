@@ -29,6 +29,13 @@ app.set('view engine', 'html');
 app.use(errorRoute.logError);
 app.use(errorRoute.client);
 
+app.get('/', checkHashtag, ( req, res ) => {
+      res.render('index');
+});
+
+app.get('/dashboard', checkHashtag, ( req, res ) => {
+      res.render('dashboard');
+})
 app.use(homeRoute);
 
 app.use(errorRoute.notFound);
@@ -44,13 +51,16 @@ io.sockets.on('connection', (socket) => {
       
       socket.on( 'stop_stream', () => {
             twitter.Stop_Stream();
+            hashTag = '';
       });
       
-
+      socket.on( 'prime_system', ( callback ) =>{
+            callback( twitter.Prime_System( io, hashTag ) );
+      });
 
       socket.on('start_stream', (data, callback) => {//successfully sending through data
             hashTag = data.hashtag;
-            interval = data.interval * 60 * 1000;//convert 10 into 10 minutes
+            interval = data.interval * 60 * 100;//convert 10 into 10 minutes
 
             if(hashTag == '' || interval == ''){//make sure the variables have been set
                   callback(false);//if not the setup failed
@@ -66,3 +76,16 @@ io.sockets.on('connection', (socket) => {
 server.listen(app.get( 'port' ), () => {
    console.log(`Server is up and running ${port}`);
 });
+
+
+function checkHashtag ( req, res, next ) {
+      let page = '';
+      if( hashTag !== '' ) {
+            page = '/dashboard';
+      } else {
+            page = '/index';
+      }
+      return res.redirect(page);    
+}
+
+module.exports = checkHashtag;
