@@ -3,7 +3,7 @@
  //Import socket io
 import io from 'socket.io-client';
 
-const socket = io.connect();
+const socket = io.connect(`${ location.protocol }//${ location.hostname }:${ location.port }`);
 
 //functions which need calling
 const Heart_Beat = require('./seperate/heart_beat'),
