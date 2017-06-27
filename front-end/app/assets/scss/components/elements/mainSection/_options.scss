@@ -1,0 +1,38 @@
+.options{
+   position: absolute;
+   z-index: 999;
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.15);
+   left: 0;
+   top: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.option{
+   background-color: $offWhite;
+   transition: 0.3s ease-in;
+   color: $offBlack;
+   text-decoration: none;
+   &:last-child{
+      margin-left: 3rem;
+   }
+   &:hover{
+      background-color: $offBlack;
+      color: $offWhite;
+      transition: 0.3s ease-in;
+      cursor: pointer;
+   }
+   a{
+      padding: 3rem;
+      text-decoration: none;
+      color: $offBlack;
+      display: inline-block;
+   }
+}
+html:fullscreen{
+   .options{
+      display: none;
+   }
+}

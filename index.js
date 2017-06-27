@@ -33,9 +33,6 @@ app.get('/', checkHashtag, ( req, res ) => {
       res.render('index');
 });
 
-app.get('/dashboard', checkHashtag, ( req, res ) => {
-      res.render('dashboard');
-})
 app.use(homeRoute);
 
 app.use(errorRoute.notFound);
@@ -55,7 +52,7 @@ io.sockets.on('connection', (socket) => {
       });
       
       socket.on( 'prime_system', ( callback ) =>{
-            callback( twitter.Prime_System( io, hashTag ) );
+            twitter.Prime_System( io, hashTag ) ;
       });
 
       socket.on('start_stream', (data, callback) => {//successfully sending through data
@@ -81,11 +78,9 @@ server.listen(app.get( 'port' ), () => {
 function checkHashtag ( req, res, next ) {
       let page = '';
       if( hashTag !== '' ) {
-            page = '/dashboard';
-      } else {
-            page = '/index';
-      }
-      return res.redirect(page);    
+            return res.redirect('/dashboard');
+      } 
+      next();
 }
 
 module.exports = checkHashtag;

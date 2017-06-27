@@ -5,7 +5,9 @@ const express = require('express'),
       home = express.Router(),
       path = require('path');
 
-
+home.get('/dashboard', ( req, res ) => {
+      res.render('dashboard');
+})
 home.get('/stop', ( req, res ) => {
       res.render('stop');
 })
