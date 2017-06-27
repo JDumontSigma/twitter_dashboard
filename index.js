@@ -57,7 +57,7 @@ io.sockets.on('connection', (socket) => {
 
       socket.on('start_stream', (data, callback) => {//successfully sending through data
             hashTag = data.hashtag;
-            interval = data.interval * 60 * 100;//convert 10 into 10 minutes
+            interval = data.interval * 60 * 1000;//convert 10 into 10 minutes
 
             if(hashTag == '' || interval == ''){//make sure the variables have been set
                   callback(false);//if not the setup failed

@@ -111,17 +111,7 @@ module.exports = {
 
    },
    Reset_Storage: () => {
-        tweetCollection = {
-            "10000": {
-                'id': 'new_tweet.id',
-                'name': 'new_tweet.name',
-                'screen_name': 'new_tweet.screen_name',
-                'followers': 'new_tweet.followers',
-                'profile_image': 'new_tweet.profile',
-                'images': 'new_tweet.imag',
-                'tweet_number': 1
-            }
-        };
+        tweetCollection = {};
         tweetIds = new Array();
         tweetNames = new Array();
         chartLog = 0;
