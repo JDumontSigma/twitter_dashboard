@@ -44,7 +44,6 @@ let hashTag = '',
 
 
 io.sockets.on('connection', (socket) => {
-      console.log('Connection');
       
       socket.on( 'stop_stream', () => {
             twitter.Stop_Stream();
@@ -52,7 +51,8 @@ io.sockets.on('connection', (socket) => {
       });
       
       socket.on( 'prime_system', ( callback ) =>{
-            twitter.Prime_System( io, hashTag ) ;
+            let clientID = socket.id;
+            twitter.Prime_System( io, hashTag, clientID ) ;
       });
 
       socket.on('start_stream', (data, callback) => {//successfully sending through data

@@ -50,8 +50,8 @@ module.exports = {
          handle.Final_Store();
          handle.Reset_Storage();
    },
-   Prime_System: ( io, hashTag ) => {
-         handle.Send_Data( io, hashTag );
+   Prime_System: ( io, hashTag, client ) => {
+         handle.Send_Data( io, hashTag, client );
    }
 };
 

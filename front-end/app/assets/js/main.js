@@ -46,40 +46,55 @@ if(window.location.href.indexOf("stop") > -1 ) {
          console.log('Time to stop');
          socket.emit( 'stop_stream' );
 }
+if(window.location.href.indexOf("dashboard") > -1 ) {
+      socket.emit('prime_system', {}, ( data ) => {
+            console.log(data);
+      });
+}
 
-socket.emit('prime_system', {}, ( data ) => {
-      console.log(data);
-});
 
-socket.on('starting_data', ( data ) => {
-      Hash_Tag.Update_Hastag( data.hashtag );
-      Update_Counter.Update_Counter( data.tweetTotal , 'tweetCount' ); //Updates total tweets
-      Update_Counter.Update_Counter( data.followerTotal, 'reach' ); //updates total reach
+window.onload = () => {
+      
+      socket.on('starting_data', ( data ) => {
+            
+            console.log(data);
+            Hash_Tag.Update_Hastag( data.hashtag );
+            Update_Counter.Update_Counter( data.tweetTotal , 'tweetCount' ); //Updates total tweets
+            Update_Counter.Update_Counter( data.followerTotal, 'reach' ); //updates total reach
 
-      for( let chartPoint in data.chartData ) {
-            Update_Chart.Update_Chart( data.chartData[chartPoint].total , data.chartData[chartPoint].label ); //update the chart
-      }
-});
-/**
- * Updates with every tweet
- */
-socket.on('new_tweet', ( tweet ) => {
-      Hash_Tag.Update_Hastag( tweet.hashtag );
-      New_Tweet.New_Tweet( tweet ); //Update the twitter feed
-      List_Update.List_Update( tweet.tweet.screen_name ); //update last 5 tweeters
-      Update_Counter.Update_Name( tweet.highTweet, 'highest' );
-      Update_Counter.Update_Counter( tweet.tweetCount , 'tweetCount' ); //Updates total tweets
-      Update_Counter.Update_Counter( tweet.followerCount, 'reach' ); //updates total reach
-      Heart_Beat.Heart_Beat_Increase();//Increase the heart beat
-});
+            for( let chartPoint in data.chartData ) {
+                  Update_Chart.Update_Chart( data.chartData[chartPoint].total , data.chartData[chartPoint].label ); //update the chart
+            }
+            for( let tweet in data.tweetData ) {
+                  New_Tweet.New_Tweet( {'tweet': data.tweetData[tweet]} ); //Update the twitter feed 
+            }
+            for( let i = 4; i > 0; i-- ) {
+                  console.log(data.lastFive[i]);
+                  List_Update.List_Update( data.lastFive[i] ); //update last 5 tweeters
+            }   
+      }); 
+      /**
+       * Updates with every tweet
+       */
+      socket.on('new_tweet', ( tweet ) => {
+            Hash_Tag.Update_Hastag( tweet.hashtag );
+            New_Tweet.New_Tweet( tweet ); //Update the twitter feed
+            List_Update.List_Update( tweet.tweet.screen_name ); //update last 5 tweeters
+            Update_Counter.Update_Name( tweet.highTweet, 'highest' );
+            Update_Counter.Update_Counter( tweet.tweetCount , 'tweetCount' ); //Updates total tweets
+            Update_Counter.Update_Counter( tweet.followerCount, 'reach' ); //updates total reach
+            Heart_Beat.Heart_Beat_Increase();//Increase the heart beat
+      });
 
-/**
- * Updates every interval
- */
-socket.on('scheduled_update', ( data ) => {
-      Update_Chart.Update_Chart( data.totalTweets , data.label ); //update the chart
-      Last_Update.Last_Update(); //updates the last time it was updated
-});
+      /**
+       * Updates every interval
+       */
+      socket.on('scheduled_update', ( data ) => {
+            Update_Chart.Update_Chart( data.totalTweets , data.label ); //update the chart
+            Last_Update.Last_Update(); //updates the last time it was updated
+      });
+}
+
 
 
 

@@ -36,7 +36,7 @@ let tweetCollection = {
     
 module.exports = {
    New_Tweet: ( io, new_tweet, hashTag ) => {
-
+       
       let Repeated_Tweet = _.includes( tweetIds, new_tweet.id );//see if the tweet exist
       if( Repeated_Tweet ) { //its a double tweet
          console.log( 'Repeated tweet!' );
@@ -44,7 +44,7 @@ module.exports = {
 
          let Tweet_Format = {}; //create an empty variable for formatting tweet
          for(let prop in tweetCollection) {//for each saved record
-     
+            
             if( tweetNames.includes( new_tweet.screen_name ) ) { //the person has already tweeted
                let tweetCount = countQuantity( tweetNames, new_tweet.screen_name );
 
@@ -58,6 +58,7 @@ module.exports = {
                   'name': new_tweet.name,
                   'screen_name': new_tweet.screen_name,
                   'followers': new_tweet.followers,
+                  'tweet': new_tweet.tweet,
                   'profile_image': new_tweet.profile,
                   'images': new_tweet.image,
                   'tweet_number': tweetCount
@@ -69,6 +70,7 @@ module.exports = {
                   'name': new_tweet.name,
                   'screen_name': new_tweet.screen_name,
                   'followers': new_tweet.followers,
+                  'tweet': new_tweet.tweet,
                   'profile_image': new_tweet.profile,
                   'images': new_tweet.image,
                   'tweet_number': 1
@@ -143,13 +145,14 @@ module.exports = {
        console.log('Last tweets stored!')
        store.Tweet_Storage( tweetCollection );//Store the tweet data
    },
-   Send_Data: ( io, hashtag ) => {
-       io.sockets.emit( 'starting_data', { 
+   Send_Data: ( io, hashtag, client ) => {
+       io.to(client).emit( 'starting_data', { 
            'hashtag': hashtag,
            'tweetTotal': totalTweets,
            'followerTotal': totalFollowers,
            'tweetData': tweetCollection,
-           'chartData': chartInfo
+           'chartData': chartInfo,
+           'lastFive': tweetNames.splice(-5)
         })
    }
 };

@@ -3,6 +3,7 @@
 import $ from 'jquery'; //import jquery
 
 export function New_Tweet ( tweetdata ) { 
+    console.log(tweetdata);
     let tweetContent = Format_Content( tweetdata.tweet.tweet );
     let imgString;
     
