@@ -2,7 +2,7 @@
 
 import io from 'socket.io-client'; //import socket.io
 
-const socket = io.connect('http://localhost:3000');// create an instance
+const socket = io.connect();// create an instance
 
 
 const form = document.getElementById('setup_form');
