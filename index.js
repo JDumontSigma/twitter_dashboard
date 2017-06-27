@@ -36,6 +36,10 @@ app.use(errorRoute.errorHandler);
 let hashTag = '',
     interval = '';
 
+
+io.set('transports', ['xhr-polling']);
+io.set('polling duration', 10);
+
 io.sockets.on('connection', (socket) => {
       console.log('Connection');
       
