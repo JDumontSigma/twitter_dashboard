@@ -1,9 +1,9 @@
 'use strict';
 //Library imports
  //Import socket io
-const io = require( 'socket.io-client/dist/socket.io' );
+const io = require( 'socket.io-client' );
 
-const socket = io.connect( window.location.origin );
+const socket = io.connect( window.location.hostname );
 
 //functions which need calling
 const Heart_Beat = require('./seperate/heart_beat'),
