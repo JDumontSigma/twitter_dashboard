@@ -3,7 +3,7 @@
  //Import socket io
 
 
-const socket = io.connect();
+const socket = io.connect(window.location.hostname , {'transports': ['websocket', 'polling']});
 
 //functions which need calling
 const Heart_Beat = require('./seperate/heart_beat'),

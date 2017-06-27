@@ -4,8 +4,8 @@ const express = require('express'),
       app = express(),
       http = require('http'),
       server = http.createServer(app),
-      io = require('socket.io')(server),
-      port = process.env.PORT || 5000;
+      io = require('socket.io')(server, {'transports': ['websocket', 'polling']}),
+      port = process.env.PORT || '3000';
 
 const path = require('path'),
       logger = require('morgan'),
@@ -18,6 +18,7 @@ const homeRoute = require('./server-tasks/routes/home'),
 
 const twitter = require( './server-tasks/twitter/twitter-stream' );
 
+app.set('port', port);
 app.use(express.static('src'));
 app.use(express.static('local-storage'));
 
@@ -64,6 +65,6 @@ io.sockets.on('connection', (socket) => {
 
 });
 
-server.listen(port, () => {
+server.listen(app.get( 'port' ), () => {
    console.log(`Server is up and running ${port}`);
 });
