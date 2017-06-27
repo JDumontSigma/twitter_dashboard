@@ -1,9 +1,9 @@
 'use strict';
 //Library imports
  //Import socket io
+import io from 'socket.io-client';
 
-
-const socket = io.connect(window.location.hostname , {'transports': ['websocket', 'polling']});
+const socket = io.connect();
 
 //functions which need calling
 const Heart_Beat = require('./seperate/heart_beat'),

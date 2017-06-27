@@ -1,13 +1,13 @@
 'use strict';
 
-
-
 let currentPos = 15,
     direction = 'up',
     bpm = 60,
     heartRate = 45,
     xPos = 250,
-    fontSize = 100;
+    fontSize = 100,
+    reductionRate = 2,
+    adaptiveInterval;
 
 export function Heart_Beat(){
 
@@ -52,15 +52,16 @@ export function Heart_Beat(){
    }, heartRate);
 }
 
-export function Heart_Beat_Control (interval) { 
+export function Heart_Beat_Control (interval) {
+    adaptiveInterval = interval;
     setTimeout(() => {
         if( bpm > 60 ) {
-            bpm = bpm - 2;//reduce heartbeat by 2 every interval
+            bpm = bpm - reductionRate;//reduce heartbeat by 2 every interval
         } else {
             bpm = 60;
         }
-        BPM_Control( bpm );
-        Heart_Beat_Control( interval );
+        BPM_Control( bpm, interval );
+        Heart_Beat_Control( adaptiveInterval );
     }, interval);
 }
 
@@ -68,9 +69,11 @@ export function Heart_Beat_Increase () {
     bpm = bpm + 4;
 }
 
-function BPM_Control ( bpm ) {
+function BPM_Control ( bpm, interval ) {
     if ( bpm <= 60 ) {
         heartRate = 45;
+        reductionRate = 2;
+        adaptiveInterval = interval * 2;
     } else if ( bpm > 60 && bpm < 80 ) {
         heartRate = 40;
     } else if ( bpm > 80 && bpm < 100 ) {
@@ -85,5 +88,10 @@ function BPM_Control ( bpm ) {
         heartRate = 15;
     } else if ( bpm > 180 ) {
         heartRate = 10;
+        
+    }
+    if ( bpm > 200 ) { 
+        reductionRate = reductionRate * 2;
+        adaptiveInterval = interval / 2;
     }
 }

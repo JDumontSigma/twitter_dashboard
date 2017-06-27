@@ -4,7 +4,7 @@ const express = require('express'),
       app = express(),
       http = require('http'),
       server = http.createServer(app),
-      io = require('socket.io')(server, {'transports': ['websocket', 'polling']}),
+      io = require('socket.io')(server),
       port = process.env.PORT || '3000';
 
 const path = require('path'),
@@ -38,8 +38,6 @@ let hashTag = '',
     interval = '';
 
 
-io.set('transports', ['xhr-polling']);
-io.set('polling duration', 10);
 
 io.sockets.on('connection', (socket) => {
       console.log('Connection');
@@ -52,7 +50,7 @@ io.sockets.on('connection', (socket) => {
 
       socket.on('start_stream', (data, callback) => {//successfully sending through data
             hashTag = data.hashtag;
-            interval = data.interval * 60 * 100;//convert 10 into 10 minutes
+            interval = data.interval * 60 * 1000;//convert 10 into 10 minutes
 
             if(hashTag == '' || interval == ''){//make sure the variables have been set
                   callback(false);//if not the setup failed
