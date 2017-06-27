@@ -1,7 +1,7 @@
 'use strict';
 //Library imports
  //Import socket io
-import io from 'socket.io-client';
+const io = require( 'socket.io-client/dist/socket.io' );
 
 const socket = io.connect( window.location.origin );
 
