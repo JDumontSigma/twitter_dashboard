@@ -46,33 +46,7 @@ module.exports = {
          })
       });
 
-      twitterTwo.stream( 'statuses/filter', { track: 'WeaveOrgUK' }, ( stream ) => {
-         stream.on( 'data', ( data ) => {
-            let image;//for media storage
-            if( typeof(data.entities.media) === 'undefined' ) {//no image
-                  image = 'N/A';
-            } else {
-                  image = data.entities.media[0].media_url_https;
-            }
-            streamHandleTwo = stream;
-            let Tweet_Info = {
-                  'id': data.id_str,//for usage later on
-                  'name': data.user.name,//their name
-                  'screen_name': data.user.screen_name,//twitter name
-                  'tweet': data.text,
-                  'followers':data.user.followers_count,
-                  'profile': data.user.profile_image_url_https,
-                  'image' : image
-            }
-
-            handle.New_Tweet( io, Tweet_Info, 'WeaveOrgUK' ); //send data for storage/manipulation
-            
-         });
-
-         stream.on('error', ( error ) => {
-               console.log( error );
-         })
-      });
+   
       
    },
    Stop_Stream: () => {
@@ -81,7 +55,7 @@ module.exports = {
          handle.Reset_Storage();
    },
    Prime_System: ( io, hashTag, client ) => {
-         handle.Send_Data( io, 'WeaveTownTalk', client );
+         handle.Send_Data( io, 'WeaveTownTalks', client );
    }
 };
 
