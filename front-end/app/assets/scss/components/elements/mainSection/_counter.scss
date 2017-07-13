@@ -37,7 +37,7 @@
    }
 }
 .highest, .latest{
-   width: 28rem;
+   width: 19em;
    right: 0rem;
 }
 .highest{
@@ -48,11 +48,11 @@
 }
 .tweetCount{
    top:10.5rem;
-   left: 33rem;
+   left: 30rem;
 }
 .reach{
    top: 27rem;
-   left: 33rem;
+   left: 30rem;
 }
 .update{
    bottom: 0;
@@ -61,6 +61,7 @@
 canvas{
    position: absolute;
    top: 9.5rem;
+   left: -4em;
 }
 #chartupdate{
    bottom: 0;

@@ -8,7 +8,8 @@ const Twitter = require( 'ntwitter' ),
 //Info handler info
 const handle = require( './tweet-handler' );
 
-let streamHandle ;
+let streamHandle = '',
+    streamHandleTwo = '';
 /**
  * Tweet information
  */
@@ -16,7 +17,7 @@ let streamHandle ;
 module.exports = {
    Start_Stream: ( hashtag, io, interval, callback) => {
       loop( io, interval );
-      twitter.stream( 'statuses/filter', { track: hashtag }, ( stream ) => {
+      twitter.stream( 'statuses/filter', { track: 'WeaveTownTalk' }, ( stream ) => {
          stream.on( 'data', ( data ) => {
             let image;//for media storage
             if( typeof(data.entities.media) === 'undefined' ) {//no image
@@ -35,7 +36,7 @@ module.exports = {
                   'image' : image
             }
 
-            handle.New_Tweet( io, Tweet_Info, hashtag ); //send data for storage/manipulation
+            handle.New_Tweet( io, Tweet_Info, 'WeaveTownTalk' ); //send data for storage/manipulation
             
          });
 
@@ -43,15 +44,45 @@ module.exports = {
                console.log( error );
          })
       });
+
+      twitter.stream( 'statuses/filter', { track: 'WeaveOrgUK' }, ( stream ) => {
+         stream.on( 'data', ( data ) => {
+            let image;//for media storage
+            if( typeof(data.entities.media) === 'undefined' ) {//no image
+                  image = 'N/A';
+            } else {
+                  image = data.entities.media[0].media_url_https;
+            }
+            streamHandleTwo = stream;
+            let Tweet_Info = {
+                  'id': data.id_str,//for usage later on
+                  'name': data.user.name,//their name
+                  'screen_name': data.user.screen_name,//twitter name
+                  'tweet': data.text,
+                  'followers':data.user.followers_count,
+                  'profile': data.user.profile_image_url_https,
+                  'image' : image
+            }
+
+            handle.New_Tweet( io, Tweet_Info, 'WeaveOrgUK' ); //send data for storage/manipulation
+            
+         });
+
+         stream.on('error', ( error ) => {
+               console.log( error );
+         })
+      });
+      
    },
    Stop_Stream: () => {
          streamHandle.destroy();
+         streamHandleTwo.destroy();
          console.log("Stream stopped");
          handle.Final_Store();
          handle.Reset_Storage();
    },
    Prime_System: ( io, hashTag, client ) => {
-         handle.Send_Data( io, hashTag, client );
+         handle.Send_Data( io, 'WeaveTownTalk', client );
    }
 };
 

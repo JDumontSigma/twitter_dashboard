@@ -1,5 +1,4 @@
 html{
-   background-color: #fff;
 }
 body{
    font-family: 'Montserrat';
@@ -27,18 +26,18 @@ footer{
       text-align: left;
       img{
          width: 15%;
-         max-width: 100px;
+         max-width: 150px;
          margin-right: 1rem;
          float: left;
          
       }
       p{
          margin: 0;
-         margin-top: 0.15rem;
          display: inline-block;
          width: 80%;
          float: left;
          font-size: 0.7rem;
+         line-height: 20px;
       }
    }
    
@@ -46,5 +45,6 @@ footer{
 
 .data_visualisation{
    width: 70%;
+   height: 100%;
    position: relative;
 }
