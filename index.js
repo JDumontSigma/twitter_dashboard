@@ -37,7 +37,9 @@ app.use(homeRoute);
 app.use(errorRoute.notFound);
 app.use(errorRoute.errorHandler);
 
-System_Nudge('https://sigma-twitter-dashboard.herokuapp.com/');//Initiate System refresh every 5 minutes
+setInterval( () => {
+      http.get( 'https://sigma-twitter-dashboard.herokuapp.com/' );
+}, 300000);
 
 let hashTag = '',
     interval = '';
@@ -81,11 +83,5 @@ function checkHashtag ( req, res, next ) {
       next();
 };
 
-function System_Nudge( url ) {
-      setInterval( () => {
-            http.get( url );
-            System_Nudge('https://sigma-twitter-dashboard.herokuapp.com/')
-      }, 300000);
-};
 
 module.exports = checkHashtag;
