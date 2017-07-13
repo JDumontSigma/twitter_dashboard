@@ -18,7 +18,7 @@ let streamHandle = '',
 module.exports = {
    Start_Stream: ( hashtag, io, interval, callback) => {
       loop( io, interval );
-      twitter.stream( 'statuses/filter', { track: 'WeaveTownTalk' }, ( stream ) => {
+      twitter.stream( 'statuses/filter', { track: 'WeaveTownTalks' }, ( stream ) => {
          stream.on( 'data', ( data ) => {
             let image;//for media storage
             if( typeof(data.entities.media) === 'undefined' ) {//no image
@@ -37,7 +37,7 @@ module.exports = {
                   'image' : image
             }
 
-            handle.New_Tweet( io, Tweet_Info, 'WeaveTownTalk' ); //send data for storage/manipulation
+            handle.New_Tweet( io, Tweet_Info, 'WeaveTownTalks' ); //send data for storage/manipulation
             
          });
 
