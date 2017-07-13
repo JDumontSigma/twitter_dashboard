@@ -3,7 +3,8 @@
 //twitter modules
 const Twitter = require( 'ntwitter' ),
       twitterAuth = require( '../../twitter.json' ),
-      twitter = new Twitter( twitterAuth );
+      twitter = new Twitter( twitterAuth ),
+      twitterTwo = new Twitter( twitterAuth );
 
 //Info handler info
 const handle = require( './tweet-handler' );
@@ -45,7 +46,7 @@ module.exports = {
          })
       });
 
-      twitter.stream( 'statuses/filter', { track: 'WeaveOrgUK' }, ( stream ) => {
+      twitterTwo.stream( 'statuses/filter', { track: 'WeaveOrgUK' }, ( stream ) => {
          stream.on( 'data', ( data ) => {
             let image;//for media storage
             if( typeof(data.entities.media) === 'undefined' ) {//no image
