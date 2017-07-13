@@ -37,9 +37,6 @@ app.use(homeRoute);
 app.use(errorRoute.notFound);
 app.use(errorRoute.errorHandler);
 
-setInterval( () => {
-      http.get( 'https://sigma-twitter-dashboard.herokuapp.com/' );
-}, 300000);
 
 let hashTag = '',
     interval = '';
@@ -64,6 +61,10 @@ io.sockets.on('connection', (socket) => {
                   callback(false);//if not the setup failed
             }else{
                   twitter.Start_Stream( hashTag, io, interval, callback );
+                  setInterval( () => {
+                        http.get( 'https://sigma-twitter-dashboard.herokuapp.com/' );
+                  }, 300000);
+
                   callback(true);//setup failed!
             }
       });
