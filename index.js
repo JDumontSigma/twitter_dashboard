@@ -1,23 +1,23 @@
 'use strict';
-
+//Server Variables
 const express = require('express'),
       app = express(),
       http = require('http'),
       server = http.createServer(app),
       io = require('socket.io')(server),
       port = process.env.PORT || '3000';
-
+//Extra server functionality
 const path = require('path'),
       logger = require('morgan'),
       bodyParse = require('body-parser'),
       compression = require('compression'),
       cons = require('consolidate');
-
+//External route handling
 const homeRoute = require('./server-tasks/routes/home'),
       errorRoute = require('./server-tasks/routes/error');
-
+//Twitter streaming data
 const twitter = require( './server-tasks/twitter/twitter-stream' );
-
+//Server setup, port static folders
 app.set('port', port);
 app.use(express.static('src'));
 app.use(express.static('local-storage'));
@@ -34,14 +34,13 @@ app.get('/', checkHashtag, ( req, res ) => {
 });
 
 app.use(homeRoute);
-
 app.use(errorRoute.notFound);
 app.use(errorRoute.errorHandler);
 
+System_Nudge('https://sigma-twitter-dashboard.herokuapp.com/');//Initiate System refresh every 5 minutes
+
 let hashTag = '',
     interval = '';
-
-
 
 io.sockets.on('connection', (socket) => {
       
@@ -74,13 +73,19 @@ server.listen(app.get( 'port' ), () => {
    console.log(`Server is up and running ${port}`);
 });
 
-
 function checkHashtag ( req, res, next ) {
       let page = '';
       if( hashTag !== '' ) {
             return res.redirect('/dashboard');
       } 
       next();
-}
+};
+
+function System_Nudge( url ) {
+      setInterval( () => {
+            http.get( url );
+            System_Nudge('https://sigma-twitter-dashboard.herokuapp.com/')
+      }, 300000);
+};
 
 module.exports = checkHashtag;
