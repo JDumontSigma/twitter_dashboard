@@ -76,8 +76,6 @@ module.exports = {
       
    },
    Stop_Stream: () => {
-         streamHandle.destroy();
-         streamHandleTwo.destroy();
          console.log("Stream stopped");
          handle.Final_Store();
          handle.Reset_Storage();
