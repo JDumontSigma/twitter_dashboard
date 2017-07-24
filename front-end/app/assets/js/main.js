@@ -55,7 +55,7 @@ if(window.location.href.indexOf("dashboard") > -1 ) {
 window.onload = () => {
       
       socket.on('starting_data', ( data ) => {
-            Hash_Tag.Update_Hastag( data.hashtag );
+            Hash_Tag.Update_Hastag( data.hashtag );//get the hashtag
             Update_Counter.Update_Counter( data.tweetTotal , 'tweetCount' ); //Updates total tweets
             Update_Counter.Update_Counter( data.followerTotal, 'reach' ); //updates total reach
             let check = document.getElementById('chartupdate');

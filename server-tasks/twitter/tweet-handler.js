@@ -1,5 +1,5 @@
 'use strict'; 
-
+//external libraries
 const _ = require( 'lodash' );
 
 //storage 
@@ -12,7 +12,7 @@ let tweetLimit = 10000,
     highestTweeterName = '',
     highestTweetCount = 0;
 
-//object based variables
+//Base init for tweetcollection
 let tweetCollection = {
    "10000": {
       'id': 'new_tweet.id',
@@ -35,7 +35,7 @@ let tweetCollection = {
     };
     
 module.exports = {
-   New_Tweet: ( io, new_tweet, hashTag ) => {
+   New_Tweet: ( io, new_tweet, hashTag ) => {//whenever a new tweet comes in
        
       let Repeated_Tweet = _.includes( tweetIds, new_tweet.id );//see if the tweet exist
       if( Repeated_Tweet ) { //its a double tweet
@@ -52,7 +52,7 @@ module.exports = {
                    highestTweetCount = tweetCount;
                    highestTweeterName = new_tweet.screen_name;
                }
-
+               //generate a new record
                Tweet_Format = {
                   'id': new_tweet.id,
                   'name': new_tweet.name,
@@ -64,7 +64,8 @@ module.exports = {
                   'tweet_number': tweetCount
                }
 
-            } else {// new engagment
+            } else {
+                // new tweet record
                Tweet_Format = {
                   'id': new_tweet.id,
                   'name': new_tweet.name,
@@ -75,6 +76,7 @@ module.exports = {
                   'images': new_tweet.image,
                   'tweet_number': 1
                }
+                //determine if its a new high tweeter
                totalFollowers = totalFollowers + new_tweet.followers;
                if( 1 > highestTweetCount ) {//set highest tweet
                    highestTweetCount = 1;
@@ -82,17 +84,15 @@ module.exports = {
                }
             }
          }; 
-
+            //update records
             totalTweets++;
             scheduledTweetTotal++;
-
             tweetIds.push( new_tweet.id );
             tweetNames.push( new_tweet.screen_name );
-
             tweetCollection[tweetLimit] = Tweet_Format;//Set the variable
             tweetLimit--;//decrease the count
       };
-
+      //send out the data
       io.sockets.emit('new_tweet', { 'tweet': new_tweet, 'tweetCount': totalTweets, 'followerCount': totalFollowers, 'highTweet': highestTweeterName, 'hashtag': hashTag });
    },
    scheduledUpdate: ( io ) => { //update every set period of time
@@ -101,7 +101,7 @@ module.exports = {
             time = `${ date.getHours() }:${ date.getMinutes() }`;
 
        io.sockets.emit( 'scheduled_update', { 'totalTweets': scheduledTweetTotal, 'label': time } );
-
+       //update the chart information
        chartInfo[chartLog] = { 'total': scheduledTweetTotal, 'label': time };
        chartLog++;//update arrray position
 
@@ -111,6 +111,7 @@ module.exports = {
 
    },
    Reset_Storage: () => {
+       //set all variables back to empty/original state
         tweetCollection = {};
         tweetIds = new Array();
         tweetNames = new Array();
@@ -132,10 +133,12 @@ module.exports = {
 
    },
    Final_Store: () => {
-       console.log('Last tweets stored!')
+       //store the data one last time
+       console.log('Last tweets stored!');
        store.Tweet_Storage( tweetCollection );//Store the tweet data
    },
    Send_Data: ( io, hashtag, client ) => {
+       //send the data to the original client
        io.to(client).emit( 'starting_data', { 
            'hashtag': hashtag,
            'tweetTotal': totalTweets,
@@ -150,16 +153,10 @@ module.exports = {
 
 function countQuantity ( array, name ) { 
     let count = 1;
-
     for( let i = 0; i < array.length; i++ ) {
         if( array[i] === name ) {
             count++;
         }
     }
-
     return count;
-}
-
-function loop (){
-      
 }
