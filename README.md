@@ -1,14 +1,21 @@
-# Base Build for Node Applications
+![Twitter Logo](./src/assets/img/sigma-logo-alt.svg)
+# Twitter Visualisation 
+> A piece which takes advantage of websockets and JavaScript's canvas element to generate live content based on live tweets being sent through twitter. The ability to set up a new 'stream' using a custom hashtag of your choice
 
-> Provides front end development functionality within the front-end folder
-> Server functionality seen by running gulp server from within front-end
+## Current State
+> Meant for personal use and will only currently allow one unique stream to be run at one point, however potential expansion would be to look into generating a database run system with ability to run multiple 'streams' at once
 
-## Set up
+### Next Steps
+[ ]  Build Database based system
+[ ]  Allow multiple streams
+[ ]  Reskin and finalise layout
+[ ]  Set up better hosting solution
 
-Clone the repo into an area of your choice and cd into the folder
-Move into front-end
-
-> npm install
-
-for developing interfaces and UI
-> gulp dev# twitter_dashboard
+### Technologies used
+* Gulp
+* Sass
+* Webpack
+* Node
+* Express
+* Socketio
+* Twitte API
